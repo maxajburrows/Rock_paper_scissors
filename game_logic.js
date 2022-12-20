@@ -16,11 +16,14 @@ function playRound(playSelect, compSelect) {
         return "Oops it looks like you made a spelling error!"
     }
     if (playSelect==compSelect) {
-        return `Draw! You both picked ${playSelect}`
+        console.log(`Draw! You both picked ${playSelect}`)
+        return 'Draw'
     } else if ((playSelect=="Rock" && compSelect=="Scissors")||(playSelect=="Scissors" && compSelect=="Paper")||(playSelect=="Paper" && compSelect=="Rock")) {
-        return `You Win! ${playSelect} beats ${compSelect}`
+        console.log(`You Win! ${playSelect} beats ${compSelect}`)
+        return 'Player Win'
     } else {
-        return `You Lose! ${compSelect} beats ${playSelect}`
+        console.log(`You Lose! ${compSelect} beats ${playSelect}`)
+        return 'Computer Win'
     }
 }
 
@@ -31,6 +34,28 @@ function capitalise(word) {
     return wordLowerCase.replace(firstLetterLower, firstLetterUpper);
 }
 
-const playerSelection = "PAPER";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i <5; i++) {
+        console.log(`The score is: You ${playerScore} - ${computerScore} The Machines`)
+        const playerSelection = prompt("Make your selection. Choose Wisely!");
+        const computerSelection = getComputerChoice();
+        let result = playRound(playerSelection, computerSelection);
+        if (result=='Player Win') {
+            playerScore++
+        } else if (result=='Computer Win') {
+            computerScore++
+        } 
+    }
+    console.log(`Final score: You ${playerScore} - ${computerScore} The Machines`)
+    if (playerScore > computerScore) {
+        console.log('You win! Humans survive for now.')
+    } else if (playerScore < computerScore) {
+        console.log('You Lose! The machines are taking over')
+    } else {
+        console.log('Draw. Humanity hangs in the balance')
+    }
+}
+
+console.log(game());

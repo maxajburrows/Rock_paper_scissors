@@ -10,19 +10,23 @@ function getComputerChoice() {
     }
 }
 
-function playRound(playSelect, compSelect) {
-    playSelect = capitalise(playSelect)
+function playRound(e) {
+    let compSelect = getComputerChoice();
+    //let playSelect = e.path<0<id;
+    let playSelect = this.id;
+    
+
     if (!(playSelect=="Rock" || playSelect=="Scissors" || playSelect=="Paper")) {
         return "Oops it looks like you made a spelling error!"
     }
     if (playSelect==compSelect) {
-        console.log(`Draw! You both picked ${playSelect}`)
+        console.log(`Draw! You both picked ${playSelect}.`)
         return 'Draw'
     } else if ((playSelect=="Rock" && compSelect=="Scissors")||(playSelect=="Scissors" && compSelect=="Paper")||(playSelect=="Paper" && compSelect=="Rock")) {
-        console.log(`You Win! ${playSelect} beats ${compSelect}`)
+        console.log(`You Win! ${playSelect} beats ${compSelect}.`)
         return 'Player Win'
     } else {
-        console.log(`You Lose! ${compSelect} beats ${playSelect}`)
+        console.log(`You Lose! ${compSelect} beats ${playSelect}.`)
         return 'Computer Win'
     }
 }
@@ -57,5 +61,10 @@ function game() {
         console.log('Draw. Humanity hangs in the balance')
     }
 }
+
+const btns = document.querySelectorAll('button');
+console.log(btns);
+btns.forEach(btn => btn.addEventListener('click', playRound));
+
 
 //console.log(game());

@@ -1,0 +1,11 @@
+#title {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+}
+
+button {
+    margin: 5px;
+}

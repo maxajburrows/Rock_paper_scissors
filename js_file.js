@@ -14,19 +14,16 @@ function playRound(e) {
     let compSelect = getComputerChoice();
     //let playSelect = e.path<0<id;
     let playSelect = this.id;
-    
-
-    if (!(playSelect=="Rock" || playSelect=="Scissors" || playSelect=="Paper")) {
-        return "Oops it looks like you made a spelling error!"
-    }
+    let resultMessage = document.querySelector('#message');
+     
     if (playSelect==compSelect) {
-        console.log(`Draw! You both picked ${playSelect}.`)
+        resultMessage.textContent = `Draw! You both picked ${playSelect}.`;
         return 'Draw'
     } else if ((playSelect=="Rock" && compSelect=="Scissors")||(playSelect=="Scissors" && compSelect=="Paper")||(playSelect=="Paper" && compSelect=="Rock")) {
-        console.log(`You Win! ${playSelect} beats ${compSelect}.`)
+        resultMessage.textContent = `You Win! ${playSelect} beats ${compSelect}.`;
         return 'Player Win'
     } else {
-        console.log(`You Lose! ${compSelect} beats ${playSelect}.`)
+        resultMessage.textContent = `You Lose! ${compSelect} beats ${playSelect}.`;
         return 'Computer Win'
     }
 }

@@ -1,4 +1,12 @@
 
+let resultMessage = document.querySelector('#message');
+let scoreMessage = document.querySelector('#score');
+let buttonRestart = document.createElement('button');
+
+const firstTo = 5;
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     let choice = Math.floor(Math.random()*3);
     if (choice==0) {
@@ -13,8 +21,7 @@ function getComputerChoice() {
 function playRound(e) {
     let compSelect = getComputerChoice();
     let playSelect = this.id;
-    let resultMessage = document.querySelector('#message');
-    let result
+    let result;
      
     if (playSelect==compSelect) {
         resultMessage.textContent = `Draw! You both picked ${playSelect}.`;
@@ -29,15 +36,7 @@ function playRound(e) {
     score(result, firstTo, resultMessage);
 }
 
-const firstTo = 5;
-let playerScore = 0;
-let computerScore = 0;
-
 function score(result, firstTo, resultMessage) {
-    const scoreMessage = document.querySelector('#score');
-    console.log(firstTo);
-    console.log(playerScore);
-
     if (playerScore < firstTo && computerScore < firstTo) {
         if (result ==='Player Win') {
             playerScore++;
@@ -58,10 +57,18 @@ function score(result, firstTo, resultMessage) {
 }
 
 function playAgain() {
-    const buttonRestart = document.createElement('button');
     buttonRestart.textContent = 'Click here to play again';
     buttonRestart.setAttribute('id', 'restart');
+    buttonRestart.addEventListener('click', resetScore)
     document.body.appendChild(buttonRestart);
+}
+
+function resetScore() {
+    playerScore = 0;
+    computerScore = 0;
+    scoreMessage.textContent = 'The score is: You 0 - 0 The Machines';
+    resultMessage.textContent = '';
+    document.body.removeChild(buttonRestart);
 }
 
 const btns = document.querySelectorAll('button');

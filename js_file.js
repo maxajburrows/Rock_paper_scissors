@@ -39,9 +39,9 @@ function score(result, firstTo, resultMessage) {
     console.log(playerScore);
 
     if (playerScore < firstTo && computerScore < firstTo) {
-        if (result=='Player Win') {
+        if (result ==='Player Win') {
             playerScore++;
-        } else if (result=='Computer Win') {
+        } else if (result ==='Computer Win') {
             computerScore++;
         }
         scoreMessage.textContent = `The score is: You ${playerScore} - ${computerScore} The Machines`;
@@ -49,35 +49,19 @@ function score(result, firstTo, resultMessage) {
     if (playerScore === firstTo) {
         resultMessage.textContent = 'You win! Humans survive...for now.';
         scoreMessage.textContent = `Final score: You ${playerScore} - ${computerScore} The Machines`;
-
+        playAgain()
     } else if (computerScore === firstTo) {
         resultMessage.textContent = 'You Lose! The machines are taking over';
         scoreMessage.textContent = `Final score: You ${playerScore} - ${computerScore} The Machines`;
+        playAgain()
     }
 }
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i <5; i++) {
-        console.log(`The score is: You ${playerScore} - ${computerScore} The Machines`)
-        const playerSelection = prompt("Make your selection. Choose Wisely!");
-        const computerSelection = getComputerChoice();
-        let result = playRound(playerSelection, computerSelection);
-        if (result=='Player Win') {
-            playerScore++
-        } else if (result=='Computer Win') {
-            computerScore++
-        } 
-    }
-    console.log(`Final score: You ${playerScore} - ${computerScore} The Machines`)
-    if (playerScore > computerScore) {
-        console.log('You win! Humans survive for now.')
-    } else if (playerScore < computerScore) {
-        console.log('You Lose! The machines are taking over')
-    } else {
-        console.log('Draw. Humanity hangs in the balance')
-    }
+function playAgain() {
+    const buttonRestart = document.createElement('button');
+    buttonRestart.textContent = 'Click here to play again';
+    buttonRestart.setAttribute('id', 'restart');
+    document.body.appendChild(buttonRestart);
 }
 
 const btns = document.querySelectorAll('button');

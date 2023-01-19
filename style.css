@@ -18,3 +18,9 @@ button {
     text-align: center;
     height: 30px;
 }
+
+#restart {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

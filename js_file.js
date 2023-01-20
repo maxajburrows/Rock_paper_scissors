@@ -18,7 +18,7 @@ function getComputerChoice() {
     }
 }
 
-function playRound(e) {
+function playRound() {
     let compSelect = getComputerChoice();
     let playSelect = this.id;
     let result;
@@ -33,10 +33,10 @@ function playRound(e) {
         resultMessage.textContent = `You Lose! ${compSelect} beats ${playSelect}.`;
         result = 'Computer Win';
     }
-    score(result, firstTo, resultMessage);
+    score(result, firstTo);
 }
 
-function score(result, firstTo, resultMessage) {
+function score(result, firstTo) {
     if (playerScore < firstTo && computerScore < firstTo) {
         if (result ==='Player Win') {
             playerScore++;
